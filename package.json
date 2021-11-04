@@ -1,0 +1,13 @@
+{
+  "name": "mushi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Online reactive shop.",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "keywords": ["react", "shop", "ecommerce"],
+  "author": "Anthony Cedeño <@aithonai>",
+  "license": "ISC"
+}

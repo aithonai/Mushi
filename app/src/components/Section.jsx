@@ -1,0 +1,41 @@
+import './Section.css'
+import Card from './Card'
+import { useEffect, useState } from "react"
+
+function Section(props) {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:7000/products`)
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(product => {
+          const newProduct = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            description: product.description,
+            category: product.category,
+            stock: product.stock,
+          }
+
+          setProducts(products => [...products, newProduct])
+        })
+      }) // eslint-disable-next-line
+  }, [])
+
+  return (
+    <section className="section grid-container">
+      {
+        products.length > 0
+        ? products.map(product => (
+          <Card key={product.id + Math.random()} image={product.image} name={product.name} description={product.description} stock={product.description} stars={product.stars}/>
+        ))
+        : <h1>Loading..</h1>
+      }
+    </section>
+  )
+}
+
+export default Section

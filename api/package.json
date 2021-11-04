@@ -1,0 +1,37 @@
+{
+  "name": "mushi-api",
+  "version": "0.0.1",
+  "description": "Mushi rest api",
+  "main": "server.js",
+  "scripts": {
+    "production": "node server.js ",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aithonai/mushi-api.git"
+  },
+  "keywords": [
+    "mushi",
+    "fastify",
+    "rest",
+    "api"
+  ],
+  "author": "@aithonai (Anthony Cedeño)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aithonai/mushi-api/issues"
+  },
+  "homepage": "https://github.com/aithonai/mushi-api#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "fastify": "^3.22.0",
+    "fastify-cors": "^6.0.2",
+    "fastify-file-upload": "^3.0.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  }
+}
