@@ -77,10 +77,6 @@ Product.getByCategory = (category, result) => {
         return
       }
 
-      res.forEach((product, index) => {
-        res[index].image = imageUrl(product, index)
-      })
-
       console.log("products: ", res)
       result(null, res)
     }
