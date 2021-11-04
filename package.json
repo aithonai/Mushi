@@ -7,7 +7,18 @@
     "api",
     "app"
   ],
-  "keywords": ["react", "shop", "ecommerce"],
+  "bugs": {
+    "url": "https://github.com/aithonai/Mushi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aithonai/Mushi.git}"
+  },
+  "keywords": [
+    "react",
+    "shop",
+    "ecommerce"
+  ],
   "author": "Anthony Cedeño <@aithonai>",
   "license": "ISC"
 }
