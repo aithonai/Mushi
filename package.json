@@ -20,5 +20,8 @@
     "ecommerce"
   ],
   "author": "Anthony Cedeño <@aithonai>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fastify-static": "^4.5.0"
+  }
 }
