@@ -26,21 +26,23 @@ export default function ProductForm() {
     })
   }
 
+  async function resetForm(e) {
+    setForm(initialForm)
+    e.target.reset()
+  }
+
   async function Upload(e) {
     e.preventDefault()
     const formBody = new FormData(e.target)
     formBody.delete("images")
     form.images.forEach((image, index) => {
-      formBody.append(`image${index}`, image)
+      formBody.set(`image${index}`, image)
     })
 
-    const res = await fetch("http://localhost:7000/products", {
+    fetch("http://localhost:7000/products", {
       method: "POST",
       body: formBody,
-    })
-
-    const data = await res.json()
-    console.log(data)
+    }).then(res => resetForm(e))
   }
 
   return (
@@ -80,17 +82,11 @@ export default function ProductForm() {
       <div>
         <label htmlFor="Stock">Stock</label>
         <div>
-          <input
-            required
-            type="range"
-            min="0"
-            max="999"
-            name="stock"
-            id="Stock"
-          />
+          <input required type="number" name="stock" id="Stock" />
         </div>
       </div>
-      <input type="submit" value="Send"/>
+      <input type="submit" value="Send" />
+      <input type="reset" value="Reset" />
       {
         <div className="image_preview">
           {form.images.length
