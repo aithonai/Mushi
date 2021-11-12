@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import "../components/Product_form.css"
 
 export default function ProductForm() {
@@ -12,6 +12,11 @@ export default function ProductForm() {
   }
 
   const [form, setForm] = useState(initialForm)
+  const inputFileRef = useRef(null)
+
+  function handleInputFile() {
+    inputFileRef.current.click()
+  }
 
   function handleImages(e) {
     e.preventDefault()
@@ -54,7 +59,10 @@ export default function ProductForm() {
         id="image"
         multiple
         onChange={handleImages}
+        ref={inputFileRef}
+        hidden={true}
       />
+      <button onClick={handleInputFile}></button>
       <div>
         <label htmlFor="Name">Name</label>
         <div>
