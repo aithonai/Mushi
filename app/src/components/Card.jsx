@@ -4,7 +4,9 @@ export default function Card({ image, name, description, stock }) {
   return (
     <div className="card">
       <div className="image">
-        <img src={image[0]} alt={name} />
+        {
+          image ? <img src={image[0]} alt={name} /> : null
+        }
       </div>
       <div className="information">
         <a href="#__" className="title">
@@ -12,7 +14,7 @@ export default function Card({ image, name, description, stock }) {
         </a>
         <div className="details">
           <div className="stock">
-            {stock.length ? (
+            {stock ? (
               <span className="withStock">with stock</span>
             ) : (
               <span className="withoutStock">without stock</span>

@@ -1,46 +1,36 @@
 import { useState, useRef } from "react"
+import Card from "./Card"
+import {
+  UilImagePlus,
+  UilCancel,
+  UilArrowCircleUp,
+} from "@iconscout/react-unicons"
 import "../components/Product_form.css"
 
 export default function ProductForm() {
-  const initialForm = {
-    name: "",
-    description: "",
-    category: "",
-    price: 0,
-    stock: 0,
-    images: [],
-  }
-
-  const [form, setForm] = useState(initialForm)
+  const [images, setImages] = useState([])
+  const [preview, setPreview] = useState({})
+  const form = useRef(null)
   const inputFileRef = useRef(null)
-
-  function handleInputFile() {
-    inputFileRef.current.click()
-  }
 
   function handleImages(e) {
     e.preventDefault()
-    const formImages = Array.from(e.target.files)
+    const newImages = Array.from(e.target.files)
 
-    formImages.forEach(image => {
+    newImages.forEach(image => {
       const reader = new FileReader()
       reader.onloadend = () => {
-        setForm(form => ({ ...form, images: [...form.images, image] }))
+        setImages(images => [...images, image])
       }
       reader.readAsDataURL(image)
     })
-  }
-
-  async function resetForm(e) {
-    setForm(initialForm)
-    e.target.reset()
   }
 
   async function Upload(e) {
     e.preventDefault()
     const formBody = new FormData(e.target)
     formBody.delete("images")
-    form.images.forEach((image, index) => {
+    images.forEach((image, index) => {
       formBody.set(`image${index}`, image)
     })
 
@@ -50,64 +40,101 @@ export default function ProductForm() {
     }).then(res => resetForm(e))
   }
 
+  async function resetForm(e) {
+    setImages([])
+    e.target.reset()
+  }
+
+  function handlePreview(e) {
+    console.log(form.current)
+  }
+
   return (
-    <form className="Form" onSubmit={Upload}>
-      <input
-        className="input_image"
-        type="file"
-        name="images"
-        id="image"
-        multiple
-        onChange={handleImages}
-        ref={inputFileRef}
-        hidden={true}
-      />
-      <button onClick={handleInputFile}></button>
-      <div>
-        <label htmlFor="Name">Name</label>
+    <div className="form_container">
+      <form className="form" ref={form} onSubmit={Upload}>
+        <h4>New Product</h4>
         <div>
-          <input required type="text" name="name" id="Name" />
+          <label htmlFor="Name">Title</label>
+          <div>
+            <input required type="text" name="name" id="Name" maxLength={255} />
+          </div>
         </div>
-      </div>
-      <div>
-        <label htmlFor="Description">Description</label>
+
         <div>
-          <textarea required type="text" name="description" id="Description" />
+          <label htmlFor="Description" maxLength={255}>
+            Description
+          </label>
+          <div>
+            <textarea
+              required
+              type="text"
+              name="description"
+              id="Description"
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        <label htmlFor="Category">Category</label>
+
         <div>
+          <label htmlFor="Category" maxLength={255}>
+            Category
+          </label>
           <input required type="text" name="category" id="Category" />
         </div>
-      </div>
-      <div>
-        <label htmlFor="Price">Price</label>
         <div>
+          <label htmlFor="Price" maxLength={255}>
+            Price
+          </label>
           <input required type="number" name="price" id="Price" />
         </div>
-      </div>
-      <div>
-        <label htmlFor="Stock">Stock</label>
         <div>
+          <label htmlFor="Stock" maxLength={255}>
+            Stock
+          </label>
           <input required type="number" name="stock" id="Stock" />
         </div>
-      </div>
-      <input type="submit" value="Send" />
-      <input type="reset" value="Reset" />
-      {
-        <div className="image_preview">
-          {form.images.length
-            ? form.images.map(image => (
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt={image.name}
-                  key={image.name + image.size}
-                />
-              ))
-            : null}
+
+        <div>
+          <input
+            type="file"
+            name="images"
+            id="image"
+            multiple
+            onChange={handleImages}
+            ref={inputFileRef}
+            hidden={true}
+          />
+          <button onClick={() => inputFileRef.current.click()}>
+            <UilImagePlus />
+          </button>
         </div>
-      }
-    </form>
+
+        <div className="controls">
+          <button type="submit">
+            Submit <UilArrowCircleUp />
+          </button>
+          <button type="reset">
+            Reset <UilCancel />
+          </button>
+        </div>
+      </form>
+      <aside className="preview">
+        <h4>Preview</h4>
+        {preview ? <Card /> : null}
+        {
+          <div className="image_preview">
+            {images.length
+              ? images.map(image => (
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt={image.name}
+                    key={image.name + image.size}
+                  />
+                ))
+              : null}
+          </div>
+        }
+        <button onClick={handlePreview}>Generate new preview</button>
+      </aside>
+    </div>
   )
 }
