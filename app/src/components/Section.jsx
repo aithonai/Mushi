@@ -1,6 +1,7 @@
-import './Section.css'
-import Card from './Card'
 import { useEffect, useState } from "react"
+import "./Section.css"
+import Card from "./Card"
+import Loader from "./Loader"
 
 function Section(props) {
   const [products, setProducts] = useState([])
@@ -26,15 +27,24 @@ function Section(props) {
   }, [])
 
   return (
-    <section className="section grid-container">
-      {
-        products.length > 0
-        ? products.map(product => (
-          <Card key={product.id + Math.random()} image={product.image} name={product.name} description={product.description} stock={product.description} stars={product.stars}/>
-        ))
-        : <h1>Loading..</h1>
-      }
-    </section>
+    <>
+      {products.length <= 0 ? (
+        <Loader />
+      ) : (
+        <section className="section grid-container">
+          {products.map(product => (
+            <Card
+              key={product.id + Math.random()}
+              image={product.image}
+              name={product.name}
+              description={product.description}
+              stock={product.description}
+              stars={product.stars}
+            />
+          ))}
+        </section>
+      )}
+    </>
   )
 }
 
