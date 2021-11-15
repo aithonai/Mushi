@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Welcome />
-      <Section category="art" />
+      <Section />
     </>
   )
 }
