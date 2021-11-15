@@ -1,13 +1,10 @@
 import { useState, useRef } from "react"
+import "./Product_form.css"
 import Card from "./Card"
-import {
-  UilImagePlus,
-  UilCancel,
-  UilArrowCircleUp,
-} from "@iconscout/react-unicons"
-import "../components/Product_form.css"
+import MyButton from "./MyButton"
+import { UilImagePlus } from "@iconscout/react-unicons"
 
-export default function ProductForm() {
+function ProductForm() {
   const [images, setImages] = useState([])
   const [preview, setPreview] = useState({})
   const form = useRef(null)
@@ -109,12 +106,12 @@ export default function ProductForm() {
         </div>
 
         <div className="controls">
-          <button type="submit">
-            Submit <UilArrowCircleUp />
-          </button>
-          <button type="reset">
-            Reset <UilCancel />
-          </button>
+          <MyButton type="reset" theme="ghost">
+            Reset
+          </MyButton>
+          <MyButton type="submit" theme="primary">
+            Submit
+          </MyButton>
         </div>
       </form>
       <aside className="preview">
@@ -138,3 +135,5 @@ export default function ProductForm() {
     </div>
   )
 }
+
+export default ProductForm
