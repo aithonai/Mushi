@@ -1,5 +1,5 @@
-import "./Welcome.css";
-import logo from '../assets/mushi_white.svg'
+import "./Welcome.css"
+import logo from "../assets/mushi_white.svg"
 
 function Welcome() {
   return (
@@ -23,7 +23,7 @@ function Welcome() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Welcome;
+export default Welcome
