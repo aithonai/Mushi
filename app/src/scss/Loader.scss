@@ -1,0 +1,12 @@
+@import "variables";
+
+.loader {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+
+	.animation {
+		width: 20vw;
+		height: 20vh;
+	}
+}
