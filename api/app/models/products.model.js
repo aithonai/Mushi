@@ -1,20 +1,27 @@
 const sql = require("./db")
 const path = require("path")
+const { minifyImage } = require("../utils/img_processing")
 const { host, port } = require("../config/env")
 
 const Product = function (product) {
   const fileImages = []
+  const fileThumbnails = []
   for (const key in product) {
     if (product[key].mv) {
-      const file = product[key]
-      const filename = `${file.md5}.${file.name.split(".")[1]}`
-      const filepath = path.join(__dirname, "../../public", filename)
-
-      file.mv(filepath)
-      fileImages.push(filename)
+      const file = product[key],
+      image = {
+        id: file.md5,
+        name: file.md5 + path.extname(file.name),
+        format: path.extname(file.name).toLowerCase(),
+        data: file.data,
+      }
+      minifyImage(image)
+      fileImages.push(image.name)
+      fileThumbnails.push(image.id + ".thumbnail" + image.format)
     } else this[key] = product[key]
   }
   this.image = JSON.stringify(fileImages)
+  this.thumbnail = JSON.stringify(fileThumbnails)
 }
 
 Product.create = (newProduct, result) => {
@@ -40,12 +47,18 @@ Product.getAll = result => {
 
     res.forEach((product, index) => {
       productImage = JSON.parse(product.image)
+      productThumbnail = JSON.parse(product.thumbnail)
       if (productImage.length === 0) return
       let urlImages = []
+      let urlThumbnails = []
       productImage.map(image => {
         urlImages = [...urlImages, `http://${host}:${port}/image/${image}`]
       })
+      productThumbnail.map(thumb => {
+        urlThumbnails.push(`http://${host}:${port}/thumb/${thumb}`)
+      })
       res[index].image = urlImages
+      res[index].thumbnail = urlThumbnails
     })
 
     console.log("response", res)

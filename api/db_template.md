@@ -5,6 +5,7 @@ CREATE TABLE products (
   description TEXT NOT NULL,
   price INT NOT NULL,
   image TEXT,
+  thumbnail TEXT,
   category VARCHAR(255),
   stock INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

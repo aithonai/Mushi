@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/aithonai/mushi-api#readme",
   "dependencies": {
-    "axios": "^0.24.0",
     "fastify": "^3.22.0",
     "fastify-cors": "^6.0.2",
     "fastify-file-upload": "^3.0.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "sharp": "^0.27.2"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",

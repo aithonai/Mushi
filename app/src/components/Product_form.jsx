@@ -49,7 +49,6 @@ function ProductForm() {
   return (
     <div className="form_container">
       <form className="form" ref={form} onSubmit={Upload}>
-        <h4>New Product</h4>
         <div>
           <label htmlFor="Name">Title</label>
           <div>
@@ -114,8 +113,7 @@ function ProductForm() {
           </MyButton>
         </div>
       </form>
-      <aside className="preview">
-        <h4>Preview</h4>
+{/*       <aside className="preview">
         {preview ? <Card /> : null}
         {
           <div className="image_preview">
@@ -131,7 +129,7 @@ function ProductForm() {
           </div>
         }
         <button onClick={handlePreview}>Generate new preview</button>
-      </aside>
+      </aside> */}
     </div>
   )
 }

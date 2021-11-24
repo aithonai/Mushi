@@ -16,6 +16,7 @@ function Section(props) {
             name: product.name,
             price: product.price,
             image: product.image,
+            thumbnail: product.thumbnail,
             description: product.description,
             category: product.category,
             stock: product.stock,
@@ -35,6 +36,7 @@ function Section(props) {
           {products.map(product => (
             <Card
               key={product.id + Math.random()}
+              thumbnail={product.thumbnail}
               image={product.image}
               name={product.name}
               description={product.description}
