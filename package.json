@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aithonai/Mushi.git}"
+    "url": "https://github.com/aithonai/Mushi.git"
   },
   "keywords": [
     "react",
@@ -20,9 +20,5 @@
     "ecommerce"
   ],
   "author": "Anthony Cedeño <@aithonai>",
-  "license": "ISC",
-  "dependencies": {
-    "@iconscout/react-unicons": "^1.1.6",
-    "fastify-static": "^4.5.0"
-  }
+  "license": "ISC"
 }
