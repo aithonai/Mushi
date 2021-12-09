@@ -2,7 +2,7 @@ import { useState, useRef } from "react"
 import "./Product_form.css"
 import Card from "./Card"
 import MyButton from "./MyButton"
-import { UilImagePlus } from "@iconscout/react-unicons"
+import { UilScenery } from "@iconscout/react-unicons"
 
 function ProductForm() {
   const [images, setImages] = useState([])
@@ -43,53 +43,47 @@ function ProductForm() {
   }
 
   function handlePreview(e) {
-    console.log(form.current)
+    let newPreview = {}
+    const elements = form.current.elements
+
+    for (const el of elements) {
+      if (el.name !== "") {
+        newPreview = {
+          ...newPreview,
+          [el.name]: el.value,
+        }
+      }
+    }
+    console.log(newPreview)
   }
 
   return (
     <div className="form_container">
+      <aside className="preview">
+        <header className="header">Preview</header>
+
+        {preview ? <Card /> : null}
+
+        <div>
+          <button onClick={handlePreview}>Preview</button>
+        </div>
+        
+        <div className="image_preview">
+          {images.length
+            ? images.map(image => (
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt={image.name}
+                  key={image.name + image.size}
+                />
+              ))
+            : null}
+        </div>
+      </aside>
       <form className="form" ref={form} onSubmit={Upload}>
-        <div>
-          <label htmlFor="Name">Title</label>
-          <div>
-            <input required type="text" name="name" id="Name" maxLength={255} />
-          </div>
-        </div>
+        <header className="header">New product</header>
 
-        <div>
-          <label htmlFor="Description" maxLength={255}>
-            Description
-          </label>
-          <div>
-            <textarea
-              required
-              type="text"
-              name="description"
-              id="Description"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label htmlFor="Category" maxLength={255}>
-            Category
-          </label>
-          <input required type="text" name="category" id="Category" />
-        </div>
-        <div>
-          <label htmlFor="Price" maxLength={255}>
-            Price
-          </label>
-          <input required type="number" name="price" id="Price" />
-        </div>
-        <div>
-          <label htmlFor="Stock" maxLength={255}>
-            Stock
-          </label>
-          <input required type="number" name="stock" id="Stock" />
-        </div>
-
-        <div>
+        <div className="input_images">
           <input
             type="file"
             name="images"
@@ -100,36 +94,71 @@ function ProductForm() {
             hidden={true}
           />
           <button onClick={() => inputFileRef.current.click()}>
-            <UilImagePlus />
+            <UilScenery />
           </button>
+        </div>
+
+        <div>
+          <label htmlFor="Name">Title</label>
+          <div>
+            <input required type="text" name="name" id="Name" maxLength={255} />
+          </div>
+        </div>
+
+        <div className="Description">
+          <label htmlFor="Description">Description</label>
+          <div>
+            <textarea
+              required
+              type="text"
+              name="description"
+              id="Description"
+              maxLength={255}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="Category">Category</label>
+          <input
+            required
+            type="text"
+            name="category"
+            id="Category"
+            maxLength={255}
+          />
+        </div>
+        <div className="shared_fields">
+          <div>
+            <label htmlFor="Stock">Stock</label>
+            <input
+              required
+              type="number"
+              name="stock"
+              id="Stock"
+              maxLength={255}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="Price">Price</label>
+            <input
+              required
+              type="number"
+              name="price"
+              id="Price"
+              maxLength={255}
+            />
+          </div>
         </div>
 
         <div className="controls">
           <MyButton type="reset" theme="ghost">
             Reset
           </MyButton>
-          <MyButton type="submit" theme="primary">
-            Submit
-          </MyButton>
+          <MyButton type="submit">Submit</MyButton>
         </div>
       </form>
-{/*       <aside className="preview">
-        {preview ? <Card /> : null}
-        {
-          <div className="image_preview">
-            {images.length
-              ? images.map(image => (
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt={image.name}
-                    key={image.name + image.size}
-                  />
-                ))
-              : null}
-          </div>
-        }
-        <button onClick={handlePreview}>Generate new preview</button>
-      </aside> */}
     </div>
   )
 }

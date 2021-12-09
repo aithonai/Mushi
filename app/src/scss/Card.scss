@@ -3,11 +3,13 @@
 
 $card-width: 30rem;
 $card-height: 6rem;
+$card-border-color: rgb(230, 230, 230);
 
 .card {
   margin: .5rem;
   width: 90%;
   height: $card-height;
+  border: 1px solid $card-border-color;
   border-radius: 6px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   display: flex;

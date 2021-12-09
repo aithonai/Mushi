@@ -1,12 +1,11 @@
 import "./Card.css"
 
 export default function Card({ thumbnail, image, name, description, stock }) {
-  console.log(thumbnail)
   return (
     <div className="card">
       <div className="image">
         {
-          image ? <img src={thumbnail} alt={name} /> : null
+          image ? <img src={thumbnail ? thumbnail : image} alt={name} /> : null
         }
       </div>
       <div className="information">

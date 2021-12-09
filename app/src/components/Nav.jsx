@@ -13,16 +13,10 @@ function Nav() {
             </div>
           </Link>
         </div>
+        <div className="nav_search">
+          <input type="text" name="search" id="search" placeholder="Buscar" />
+        </div>
         <div className="nav_items">
-          <nav className="nav_links">
-            <a href="#varios">varios</a>
-            <a href="#ropa">ropa</a>
-            <a href="#cuadros">cuadros</a>
-            <a href="#telefonos">teléfonos</a>
-          </nav>
-          <div className="nav_search">
-            <input type="text" name="search" id="search" placeholder="Buscar" />
-          </div>
           <div className="nav_new">
             <Link to="/new">
               <span className="material-icons">add</span>

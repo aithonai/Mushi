@@ -15,15 +15,12 @@
   color: $white-color;
   transition: all 0.2s;
   cursor: pointer;
+  font-family: $font;
 
   &:hover {
     box-shadow: 0 0 2px 3px transparentize($color: $primary-color, $amount: 0.5);
     transition: all 0.2s;
   }
-}
-
-.primary {
-  color: $primary-color;
 }
 
 .ghost {
