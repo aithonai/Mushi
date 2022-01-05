@@ -5,7 +5,7 @@ export default function Card({ thumbnail, image, name, description, stock }) {
     <div className="card">
       <div className="image">
         {
-          image ? <img src={thumbnail ? thumbnail : image} alt={name} /> : null
+          image && <img src={thumbnail ? thumbnail : image} alt={name} />
         }
       </div>
       <div className="information">

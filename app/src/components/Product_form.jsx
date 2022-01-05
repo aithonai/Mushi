@@ -6,7 +6,7 @@ import { UilScenery } from "@iconscout/react-unicons"
 
 function ProductForm() {
   const [images, setImages] = useState([])
-  const [preview, setPreview] = useState({})
+  const [preview, setPreview] = useState(null)
   const form = useRef(null)
   const inputFileRef = useRef(null)
 
@@ -45,16 +45,11 @@ function ProductForm() {
   function handlePreview(e) {
     let newPreview = {}
     const elements = form.current.elements
-
     for (const el of elements) {
-      if (el.name !== "") {
-        newPreview = {
-          ...newPreview,
-          [el.name]: el.value,
-        }
-      }
+      if (el.name !== "")
+        newPreview = { ...newPreview, [el.name]: el.files || el.value }
     }
-    console.log(newPreview)
+    setPreview(newPreview)
   }
 
   return (
@@ -62,23 +57,28 @@ function ProductForm() {
       <aside className="preview">
         <header className="header">Preview</header>
 
-        {preview ? <Card /> : null}
+        <section className="card_preview">{
+        <>
+          <p>This is a preview of the product, you can see how your customers will see it</p> 
+          <Card />
+        </>
+        }</section>
 
-        <div>
-          <button onClick={handlePreview}>Preview</button>
-        </div>
-        
-        <div className="image_preview">
-          {images.length
-            ? images.map(image => (
+        <section className="controls_preview">
+          <button className="button_preview" onClick={handlePreview}>
+            Preview
+          </button>
+          <div className="images_preview">
+            {images &&
+              images.map(image => (
                 <img
                   src={URL.createObjectURL(image)}
                   alt={image.name}
                   key={image.name + image.size}
                 />
-              ))
-            : null}
-        </div>
+              ))}
+          </div>
+        </section>
       </aside>
       <form className="form" ref={form} onSubmit={Upload}>
         <header className="header">New product</header>
@@ -93,7 +93,10 @@ function ProductForm() {
             ref={inputFileRef}
             hidden={true}
           />
-          <button onClick={() => inputFileRef.current.click()}>
+          <button
+            className="uploadByDisk"
+            onClick={() => inputFileRef.current.click()}
+          >
             <UilScenery />
           </button>
         </div>
