@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./Section.css"
+import "../scss/Section.scss"
 import Card from "./Card"
 import Loader from "./Loader"
 

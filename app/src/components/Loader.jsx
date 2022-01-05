@@ -1,4 +1,4 @@
-import "./Loader.css"
+import "../scss/Loader.scss"
 import loader_logo from "../assets/loader.svg"
 
 function Loader() {

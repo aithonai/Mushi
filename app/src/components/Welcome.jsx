@@ -1,4 +1,4 @@
-import "./Welcome.css"
+import "../scss/Welcome.scss"
 import logo from "../assets/mushi_white.svg"
 
 function Welcome() {

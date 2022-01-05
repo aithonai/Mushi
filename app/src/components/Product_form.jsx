@@ -1,5 +1,5 @@
 import { useState, useRef } from "react"
-import "./Product_form.css"
+import "../scss/Product_form.scss"
 import Card from "./Card"
 import MyButton from "./MyButton"
 import { UilScenery } from "@iconscout/react-unicons"

@@ -1,4 +1,4 @@
-import "./Nav.css"
+import "../scss/Nav.scss"
 import { Link } from "wouter"
 import logo from "../assets/mushi.svg"
 
