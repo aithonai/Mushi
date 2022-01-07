@@ -1,5 +1,5 @@
-import { useState, useRef } from "react"
 import "../scss/Product_form.scss"
+import { useState, useRef } from "react"
 import Card from "./Card"
 import MyButton from "./MyButton"
 import { UilScenery } from "@iconscout/react-unicons"
@@ -46,10 +46,12 @@ function ProductForm() {
     let newPreview = {}
     const elements = form.current.elements
     for (const el of elements) {
-      if (el.name !== "")
-        newPreview = { ...newPreview, [el.name]: el.files || el.value }
+      if (el.name !== "") newPreview = { ...newPreview, [el.name]: el.value }
     }
-    setPreview(newPreview)
+    
+    images.length > 0
+    ? setPreview({ ...newPreview, "thumbnail": URL.createObjectURL(images[0])})
+    : setPreview({ ...newPreview })
   }
 
   return (
@@ -57,12 +59,22 @@ function ProductForm() {
       <aside className="preview">
         <header className="header">Preview</header>
 
-        <section className="card_preview">{
-        <>
-          <p>This is a preview of the product, you can see how your customers will see it</p> 
-          <Card />
-        </>
-        }</section>
+        <section className="card_preview">
+          {preview ? (
+            <>
+              <p>
+                This is a preview of the product, you can see how your customers
+                will see it
+              </p>
+              <Card {...preview} />
+            </>
+          ) : (
+            <p>
+              To generate a preview just fill the fields
+              and click the button below
+            </p>
+          )}
+        </section>
 
         <section className="controls_preview">
           <button className="button_preview" onClick={handlePreview}>
@@ -86,7 +98,7 @@ function ProductForm() {
         <div className="input_images">
           <input
             type="file"
-            name="images"
+            name="image"
             id="image"
             multiple
             onChange={handleImages}
@@ -101,14 +113,14 @@ function ProductForm() {
           </button>
         </div>
 
-        <div>
+        <div className="input_container">
           <label htmlFor="Name">Title</label>
           <div>
             <input required type="text" name="name" id="Name" maxLength={255} />
           </div>
         </div>
 
-        <div className="Description">
+        <div className="input_container Description">
           <label htmlFor="Description">Description</label>
           <div>
             <textarea
@@ -121,7 +133,7 @@ function ProductForm() {
           </div>
         </div>
 
-        <div>
+        <div className="input_container">
           <label htmlFor="Category">Category</label>
           <input
             required
@@ -131,8 +143,9 @@ function ProductForm() {
             maxLength={255}
           />
         </div>
+        
         <div className="shared_fields">
-          <div>
+          <div className="input_container">
             <label htmlFor="Stock">Stock</label>
             <input
               required
@@ -143,7 +156,7 @@ function ProductForm() {
             />
           </div>
 
-          <div>
+          <div className="input_container">
             <label htmlFor="Price">Price</label>
             <input
               required

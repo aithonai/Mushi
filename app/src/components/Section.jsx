@@ -36,12 +36,7 @@ function Section(props) {
           {products.map(product => (
             <Card
               key={product.id + Math.random()}
-              thumbnail={product.thumbnail}
-              image={product.image}
-              name={product.name}
-              description={product.description}
-              stock={product.description}
-              stars={product.stars}
+              {...product}
             />
           ))}
         </section>
