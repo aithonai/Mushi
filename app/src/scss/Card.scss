@@ -3,13 +3,12 @@
 
 $card-width: 30rem;
 $card-height: 6rem;
-$card-border-color: rgb(230, 230, 230);
 
 .card {
   width: 100%;
   max-width: 30rem;
   height: $card-height;
-  border: 1px solid $card-border-color;
+  border: 0px solid none;
   border-radius: 6px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -28,8 +27,6 @@ $card-border-color: rgb(230, 230, 230);
     img {
       width: 100%;
       height: $card-height;
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
       margin: auto auto;
       object-fit: cover;
     }
