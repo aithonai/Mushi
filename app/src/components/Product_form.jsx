@@ -26,7 +26,7 @@ function ProductForm() {
   async function Upload(e) {
     e.preventDefault()
     const formBody = new FormData(e.target)
-    formBody.delete("images")
+    formBody.delete("image")
     images.forEach((image, index) => {
       formBody.set(`image${index}`, image)
     })
@@ -50,7 +50,7 @@ function ProductForm() {
     }
     
     images.length > 0
-    ? setPreview({ ...newPreview, "thumbnail": URL.createObjectURL(images[0])})
+    ? setPreview({ ...newPreview, "thumbnail": [URL.createObjectURL(images[0])]})
     : setPreview({ ...newPreview })
   }
 

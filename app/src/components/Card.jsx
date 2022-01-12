@@ -4,7 +4,7 @@ export default function Card({ thumbnail, image, name, description, stock }) {
   return (
     <div className="card">
       <div className="image">
-        {thumbnail && <img src={thumbnail || thumbnail[0]} alt={name} />}
+        {thumbnail && <img src={thumbnail[0] || thumbnail } alt={name} />}
       </div>
       <div className="information">
         <a href="#__" className="title">
