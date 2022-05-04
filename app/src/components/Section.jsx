@@ -1,46 +1,33 @@
+import "./Section.scss"
 import { useEffect, useState } from "react"
-import "../scss/Section.scss"
 import Card from "./Card"
 import Loader from "./Loader"
 
 function Section(props) {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState()
+  const renderCondition = products instanceof Array
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:7000/products`)
-      .then(res => res.json())
-      .then(data => {
-        data.forEach(product => {
-          const newProduct = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            thumbnail: product.thumbnail,
-            description: product.description,
-            category: product.category,
-            stock: product.stock,
-          }
-
-          setProducts(products => [...products, newProduct])
-        })
-      }) // eslint-disable-next-line
+    fetch(`http://localhost:7000/products`)
+      .then(response => response.json())
+      .then(products => setProducts(products))
   }, [])
 
   return (
     <>
-      {products.length <= 0 ? (
-        <Loader />
-      ) : (
-        <section className="section grid-container">
-          {products.map(product => (
-            <Card
-              key={product.id + Math.random()}
-              {...product}
-            />
-          ))}
-        </section>
-      )}
+      { !renderCondition && <Loader /> }
+      {
+        renderCondition && products.length > 0
+        && <section className="section">
+            <section className="grid-container">
+              {products.map(product => <Card key={product.id} {...product}/>)}
+            </section>
+          </section> 
+      }
+      {
+        renderCondition && products.length < 1
+        && <p style={{textAlign: "center"}}>We have nothing to show <br /> ._.</p>
+      }
     </>
   )
 }

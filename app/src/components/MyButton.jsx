@@ -1,13 +1,22 @@
-import "../scss/MyButton.scss"
+import { BrandButton, BrandDivButton } from "./MyButtonStyles"
 
 function MyButton(props) {
   return (
-    <button
-      type={props.type ? props.type : null}
-      className={`MyButton ${props.theme || ""}`}
-    >
-      {props.children}
-    </button>
+    props.container
+    ? <BrandDivButton
+        {...props}
+        type={props.type}
+        theme={props.theme}
+      >
+        {props.children}
+      </BrandDivButton>
+    : <BrandButton
+        {...props}
+        type={props.type}
+        theme={props.theme}
+      >
+        {props.children}
+      </BrandButton>
   )
 }
 

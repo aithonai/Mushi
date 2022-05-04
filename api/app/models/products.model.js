@@ -1,6 +1,6 @@
 const sql = require("./db")
 const path = require("path")
-const { minifyImage } = require("../utils/img_processing")
+const { minifyImage, deleteImage } = require("../utils/img_processing")
 const { host, port } = require("../config/env")
 
 const Product = function (product) {
@@ -60,8 +60,7 @@ Product.getAll = result => {
       res[index].image = urlImages
       res[index].thumbnail = urlThumbnails
     })
-
-    console.log("response", res)
+    console.log(res)
     result(null, res)
   })
 }
@@ -122,6 +121,14 @@ Product.updateById = (productId, newProduct, result) => {
 }
 
 Product.deleteById = (productId, result) => {
+  const getImages = "SELECT image, thumbnail from products WHERE id = ?"
+  sql.query(getImages, productId, (err, res) => {
+    res = res[0]
+    for (const field in res) {
+      const images = JSON.parse(res[field])
+      deleteImage(images)
+    }
+  })
   sql.query("DELETE FROM products WHERE id = ?", productId, (err, res) => {
     if (err) {
       console.log("error: ", err)

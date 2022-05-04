@@ -1,22 +1,23 @@
-import "../scss/Card.scss"
+import "./Card.scss"
+import { useModal } from "../hooks/useModal"
+import CardModal from "./CardModal"
 
-export default function Card({ thumbnail, image, name, description, stock }) {
+export default function Card(props) {
+  const {name, description, thumbnail} = props
+  const [modalCard, openModalCard, closeModalCard] = useModal()
+
   return (
-    <div className="card">
-      <div className="image">
-        {thumbnail && <img src={thumbnail[0] || thumbnail } alt={name} />}
-      </div>
+    <section className="card" onClick={openModalCard}> 
+      <picture className="thumbnail">
+        {thumbnail && thumbnail.length > 0 && <img src={thumbnail[0]} alt={name + "thumbnail"} />}
+      </picture> 
       <div className="information">
-        <a href="#__" className="title">
+        <span className="title">
           {name}
-        </a>
-        <div className="details">
-          <div className="stock">
-            {stock > 0 && <span className="withStock">with stock</span>}
-          </div>
-        </div>
+        </span>
         <span className="desc">{description}</span>
       </div>
-    </div>
+      <CardModal {...props} isOpen={modalCard} closeModal={closeModalCard} />
+    </section>
   )
 }

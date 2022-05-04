@@ -1,4 +1,5 @@
-const fastify = require("fastify")({ logger: true })
+const log = require("pino")({ prettyPrint: true })
+const fastify = require("fastify")({ logger: log })
 const productsRoutes = require("./app/routes/products.routes")
 const imagesRoutes = require("./app/routes/images.routes")
 const { port, host } = require("./app/config/env")
@@ -17,8 +18,7 @@ imagesRoutes.forEach(route => fastify.route(route))
 
 const start = async () => {
   try {
-    await fastify.listen({ port, host })
-    console.log(`Server listening on http://${host}:${port}`)
+    await fastify.listen({ host, port })
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)

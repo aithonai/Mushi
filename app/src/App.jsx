@@ -1,4 +1,5 @@
 import "./App.css"
+import "./assets/Font.css"
 import { Route, Switch } from "wouter"
 import New from "./pages/New"
 import Home from "./pages/Home"

@@ -1,16 +1,17 @@
-@import 'material_icons';
-@import "variables";
+@import "./variables";
 
 $card-width: 30rem;
 $card-height: 6rem;
 
 .card {
+  $shadow_size: 10px;
+
   width: 100%;
   max-width: 30rem;
   height: $card-height;
-  border: 0px solid none;
+  border: 0px solid transparent;
   border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px $shadow_size rgba(0, 0, 0, 0.10);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -19,8 +20,15 @@ $card-height: 6rem;
   font-family: $font;
   color: #303030;
   text-align: left;
+  transition: all 0.2s ease;
 
-  .image {
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 3px calc($shadow_size * 2) rgba(0, 0, 0, 0.15);
+    transition: all 0.15s ease;
+  }
+
+  .thumbnail {
     width: 30%;
     background-color: white;
 
@@ -41,15 +49,23 @@ $card-height: 6rem;
     padding-left: 0.5rem;
 
     .title {
+      font-size: 1rem;
+      font-weight: bold;
       display: -webkit-box;
-      font-size: 14px;
-      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      color: #555;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
       overflow: hidden;
     }
 
     .desc {
-      font-size: 12px;
+      max-width: 15rem;
+      font-size: 0.8rem;
+      line-height: 1.1rem;
+      font-weight: normal;
       color: gray;
+      line-clamp: 2;
       -webkit-line-clamp: 2;
       overflow: hidden;
     }
@@ -70,11 +86,5 @@ $card-height: 6rem;
         .withoutStock {color: #d2232d}
       }
     }
-  }
-}
-
-@media screen and (max-width: 510px) {
-  .image {
-    padding-left: 0.5rem;
   }
 }

@@ -1,6 +1,7 @@
-import "../scss/Nav.scss"
+import "./Nav.scss"
+import { UilPlus, UilApps } from '@iconscout/react-unicons'
+import logo from "../assets/mushi_mini.png"
 import { Link } from "wouter"
-import logo from "../assets/mushi.svg"
 
 function Nav() {
   return (
@@ -8,9 +9,9 @@ function Nav() {
       <div className="nav_container">
         <div className="nav_brand">
           <Link to="/">
-            <div className="logo_container">
-              <img src={logo} alt="mushi logo"></img>
-            </div>
+            <a href="#a" className="logo_container">
+              <img src={logo} alt="mushi logo" title="Go to Home"></img>
+            </a>
           </Link>
         </div>
         <div className="nav_search">
@@ -19,13 +20,14 @@ function Nav() {
         <div className="nav_items">
           <div className="nav_new">
             <Link to="/new">
-              <span className="material-icons">add</span>
-            </Link>
+              <a href="#a">
+                <UilPlus />
+              </a>
+            </Link>  
           </div>
-          <button className="nav_menu_mobile" id="menu_btn">
-            <span className="material-icons">menu</span>
-            <span className="material-icons hidden">cancel</span>
-          </button>
+          <div className="nav_menu_mobile" id="menu_btn">
+            <UilApps />
+          </div>
         </div>
       </div>
     </div>

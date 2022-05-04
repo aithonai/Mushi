@@ -23,7 +23,9 @@ exports.getAll = (req, reply) => {
         message:
           err.message || "Some error occurred while retrieving products.",
       })
-    else reply.send(data)
+    else {
+      reply.send(data)
+    }
   })
 }
 
@@ -96,10 +98,9 @@ exports.delete = (req, reply) => {
         reply.code(500).send({
           message:
             err.message ||
-            `Could not delete product with id ${req.params.customerId}`,
+            `Could not delete product with id ${req.params.id}`,
         })
       }
-    } else
-      reply.code(200).send({ message: `Product was deleted successfully.` })
+    } else reply.code(200).send({ message: `Product was deleted successfully.` })
   })
 }

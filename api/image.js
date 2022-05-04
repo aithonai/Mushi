@@ -48,16 +48,4 @@ function imgThumbnail(image, format = ".jpg") {
   }
 }
 
-function deleteImage(filename) {
-  const Delete = (file) => fs.rmSync(path.join(imagesFolder, file))
-
-  try {
-    if (typeof filename === "object") {
-      filename.forEach(file => Delete(file))
-    } else { Delete(filename) }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-module.exports = { minifyImage, deleteImage, imagesFolder }
+module.exports = { minifyImage, imagesFolder }

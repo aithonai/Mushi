@@ -1,5 +1,8 @@
-import ProductForm from "../components/Product_form"
+import setTitle from "../utils/setTitle"
+import Form from "../components/ProductForm/Form"
 
 export default function New() {
-  return <ProductForm />
+  setTitle('New Product')
+
+  return <Form />
 }
