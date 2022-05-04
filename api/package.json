@@ -4,7 +4,7 @@
   "description": "Mushi rest api",
   "main": "server.js",
   "scripts": {
-    "production": "NODE_ENV=production node server.js ",
+    "production": "node server.js",
     "start": "NODE_ENV=development nodemon server.js",
     "test": "NODE_ENV=test jest --verbose"
   },
