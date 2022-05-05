@@ -1,11 +1,11 @@
-import "./Loader.scss"
+import { NewLoader, Animation } from "./LoaderStyles"
 import loader_logo from "../assets/loader.svg"
 
 function Loader() {
   return (
-    <div className="loader">
-      <img className="animation" src={loader_logo} alt="Loader" />
-    </div>
+    <NewLoader>
+      <Animation src={loader_logo} alt="Loader" />
+    </NewLoader>
   )
 }
 
