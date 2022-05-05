@@ -2,6 +2,7 @@ import styled, { css } from "styled-components"
 import * as theme from "../Theme"
 
 export const FormContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
 `
@@ -10,12 +11,18 @@ export const Form = styled.form`
 	display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
   font-family: ${theme.font.primary};
   background-color: ${theme.color.white};
-  border-right: 0px solid #e6e6e6;
+  border-right: 1px solid #f2f2f2;
+  border-left: 1px solid #f2f2f2;
   padding-bottom: 1rem;
   min-height: calc(100vh - 4rem);
+
+  @media screen and (${theme.breakpoint.mobile.width}) {
+    width: 100%;
+    border: 0;
+  }
 `
 
 export const Title = styled.header`
@@ -163,23 +170,22 @@ export const FormControls = styled.div`
   }
 `
 
-export const CardPreview = styled.div`
-  width: calc(100% - 2rem);
+export const PreviewCard = styled.div`
+  width: 100%;
+  max-width: 28rem;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
   align-self: center;
   padding: 1rem;
   border-radius: 0.6rem;
   margin-bottom: 1rem;
   background-color: #f2f2f2;
 
-  & > .card {
-    width: 100%;
-  }
-
   @media screen and (${theme.breakpoint.mobile.width}) {
     & {
-      padding: 1rem;
+      padding: 0rem;
     }
   }
 `

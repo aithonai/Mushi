@@ -1,6 +1,6 @@
 import { 
   FormContainer, Form, Title, Inputs, JoinInputs, Input, 
-  TextArea, Controls, FormControls, CardPreview 
+  TextArea, Controls, FormControls, PreviewCard 
 } from "./FormStyles"
 import { useState, useEffect, useRef  } from "react"
 import Card from "../Card"
@@ -51,11 +51,9 @@ function ProductForm() {
     e.preventDefault()
     e.stopPropagation()
     const productFormData = new FormData(e.target)
-    form.image.forEach((image, index) => {
-      productFormData.set(`image${index}`, image)  
-    })
+    form.image.forEach((image, index) => productFormData.set("image" + index, image))
 
-    fetch("http://localhost:7000/products", {
+    fetch("/products", {
       method: "POST",
       body: productFormData,
     }).then(resetForm)
@@ -74,7 +72,7 @@ function ProductForm() {
           <Title>New product</Title>
             {
               (form.data || previewImages.length > 0) && !isLoadingImage
-              && <CardPreview><Card {...preview} /></CardPreview>
+              && <PreviewCard> <Card {...preview} /> </PreviewCard>
             }
           <Inputs>
             <JoinInputs>
