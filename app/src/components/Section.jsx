@@ -8,7 +8,7 @@ function Section(props) {
   const renderCondition = products instanceof Array
 
   useEffect(() => {
-    fetch(`http://localhost:7000/products`)
+    fetch(`/products`)
       .then(response => response.json())
       .then(products => setProducts(products))
   }, [])
