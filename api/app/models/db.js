@@ -2,7 +2,7 @@ const mysql = require("mysql2")
 const env = require("../config/env")
 
 const connection = mysql.createConnection({
-  host: env.host,
+  host: env.dbhost,
   user: env.user,
   password: env.password,
   database: env.database,

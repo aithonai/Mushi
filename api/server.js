@@ -7,11 +7,9 @@ const { join } = require("path")
 
 fastify.register(require("fastify-cors"), { origin: "*" })
 fastify.register(require("fastify-file-upload"), { createParentPath: true })
-fastify.register(require("fastify-static"), {
-  root: join(__dirname, "../app/build"),
-})
+fastify.register(require("fastify-static"), { root: join(__dirname, "../app/build")})
 
-fastify.get("/", (req, reply) => reply.sendFile("index.html"))
+fastify.get('*', (req, reply) => reply.sendFile("index.html"))
 
 productsRoutes.forEach(route => fastify.route(route))
 imagesRoutes.forEach(route => fastify.route(route))
