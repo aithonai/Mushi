@@ -68,7 +68,7 @@ function ProductForm() {
   
   return (
       <FormContainer>
-        <Form ref={formRef} onSubmit={Upload} onChange={handleChange}>
+        <Form autocomplete="off" ref={formRef} onSubmit={Upload} onChange={handleChange}>
           <Title>New product</Title>
             {
               (form.data || previewImages.length > 0) && !isLoadingImage

@@ -1,17 +1,15 @@
 import "./App.css"
 import "./assets/Font.css"
-import { Route, Switch } from "wouter"
+import { Routes, Route } from "react-router-dom";
 import New from "./pages/New"
 import Home from "./pages/Home"
 
 export default function App() {
   return (
-    <Switch>
-      <Route path="/new" component={New} />
-      <Route path="/" component={Home} />
-      <Route>
-        <img src="https://i.stack.imgur.com/6M513.png" alt="xd"/>
-      </Route>
-    </Switch>
+    <Routes>
+      <Route path="/new" element={<New />} />
+      <Route path="/" index element={<Home />} />
+      <Route path="*" element={<p>404 NOT FOUND</p>} />
+    </Routes>
   )
 }

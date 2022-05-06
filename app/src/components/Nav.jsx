@@ -1,7 +1,7 @@
 import "./Nav.scss"
 import { UilPlus, UilApps } from '@iconscout/react-unicons'
 import logo from "../assets/mushi_mini.png"
-import { Link } from "wouter"
+import { Link } from "react-router-dom"
 
 function Nav() {
   return (
@@ -19,7 +19,7 @@ function Nav() {
         </div>
         <div className="nav_items">
           <div className="nav_new">
-            <Link to="/new">
+            <Link to="new">
               <a href="#a">
                 <UilPlus />
               </a>
