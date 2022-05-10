@@ -78,7 +78,7 @@ function ProductForm() {
             <JoinInputs>
               <div>
                 <label htmlFor="name">Title</label>
-                <Input required name="name" maxLength={255} autocomplete='hidden' />
+                <Input required name="name" maxLength={255} />
               </div>
 
               <div>
