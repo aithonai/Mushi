@@ -15,7 +15,7 @@ function Section(props) {
 
   return (
     <>
-      { !renderCondition && <Loader /> }
+      { !renderCondition && <Loader centered /> }
       {
         renderCondition && products.length > 0
         && <section className="section">
