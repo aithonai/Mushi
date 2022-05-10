@@ -1,15 +1,18 @@
 import "./App.css"
 import "./assets/Font.css"
-import { Routes, Route } from "react-router-dom";
-import New from "./pages/New"
+import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
+import New from "./pages/New"
+import Nav from './components/Nav'
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/new" element={<New />} />
-      <Route path="/" index element={<Home />} />
-      <Route path="*" element={<p>404 NOT FOUND</p>} />
-    </Routes>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/new" element={<New />} />
+        <Route path="/" index element={<Home />} />
+      </Routes>
+    </>
   )
 }
