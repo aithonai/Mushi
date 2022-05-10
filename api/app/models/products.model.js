@@ -1,3 +1,4 @@
+const log = require("../server/logger")
 const sql = require("./db")
 const path = require("path")
 const { minifyImage, deleteImage } = require("../utils/img_processing")
@@ -59,8 +60,8 @@ Product.getAll = result => {
       })
       res[index].image = urlImages
       res[index].thumbnail = urlThumbnails
+      log.info(product)
     })
-    console.log(res)
     result(null, res)
   })
 }
