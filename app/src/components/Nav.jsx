@@ -8,10 +8,8 @@ function Nav() {
     <div className="nav">
       <div className="nav_container">
         <div className="nav_brand">
-          <Link to="/">
-            <a href="#a" className="logo_container">
-              <img src={logo} alt="mushi logo" title="Go to Home"></img>
-            </a>
+          <Link to="/" className="logo_container">
+            <img src={logo} alt="mushi logo" title="Go to Home"></img>
           </Link>
         </div>
         <div className="nav_search">
@@ -20,9 +18,7 @@ function Nav() {
         <div className="nav_items">
           <div className="nav_new">
             <Link to="new">
-              <a href="#a">
-                <UilPlus />
-              </a>
+              <UilPlus />
             </Link>  
           </div>
           <div className="nav_menu_mobile" id="menu_btn">
