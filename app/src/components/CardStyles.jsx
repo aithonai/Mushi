@@ -17,6 +17,7 @@ export const NewCard = styled.div`
   color: #303030;
   cursor: pointer;
   text-align: left;
+  -webkit-tap-highlight-color: transparent;
   transition: all 0.2s ease;
 `
 

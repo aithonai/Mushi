@@ -1,9 +1,17 @@
 import styled from "styled-components"
+import { 
+	ProductContent, ImageContainer,
+	MultipleImageContainer, Image 
+} from "./CardModalStyles"
 import Modal from "./Modal"
+
+function mapImages(images) {
+	return images.map(img => <Image src={img} key={img} alt={img} />)
+}
 
 function CardModal (props) {
 	const { name, description, image, stock } = props
-	const images = image instanceof Array && image.map(img => <Image src={img} key={Math.random() + props.name} alt={`Image of ${props.name}`}/>)
+	const images = image instanceof Array && mapImages(image)
 	
 	return (
 		<Modal title={name} isOpen={props.isOpen} closeModal={props.closeModal}>
@@ -20,25 +28,6 @@ function CardModal (props) {
 	)
 }
 
-const ProductContent = styled.div`
-	display: flex;
-	flex-direction: column;
-	overflow-y: auto;
-`
-
-const ImageContainer = styled.div`
-	display: grid;
-	grid-template-columns: 1fr;
-`
-
-const MultipleImageContainer = styled(ImageContainer)`
-	grid-template-columns: 1fr 1fr
-`
-
-const Image = styled.img`
-	max-height: 25rem;
-	border-radius: 0.4rem;
-`
 const Stock = styled.span``
 const Info = styled.p``
 
