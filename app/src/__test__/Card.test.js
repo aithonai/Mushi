@@ -17,14 +17,16 @@ const props = {
   updated_at: "2022-05-05T11:10:52.000Z"
 }
 
-test("Renders title", () => {
-	const { container } = render(<Card {...props} />)
-	const title = container.querySelector(Title)
-	expect(title).toHaveTextContent(props.name)
-})
+describe("Renders card information", () => {
+	test("Renders title", () => {
+		const { container } = render(<Card {...props} />)
+		const title = container.querySelector(Title)
+		expect(title).toHaveTextContent(props.name)
+	})
 
-test("Renders thumbnail", async () => {
-	const { container } = await render(<Card {...props} />)
-	const cardImage = container.querySelector(`${Thumbnail} > img`)
-	expect(cardImage.src).toContain(props.image[0])
+	test("Renders thumbnail", () => {
+		const { container } = render(<Card {...props} />)
+		const cardImage = container.querySelector(`${Thumbnail} > img`)
+		expect(cardImage.src).toContain(props.image[0])
+	})
 })
