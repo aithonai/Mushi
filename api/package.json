@@ -36,5 +36,16 @@
   "devDependencies": {
     "dotenv": "^10.0.0",
     "nodemon": "^2.0.13"
+  },
+  "nodemonConfig": {
+    "quiet": true,
+    "events": {
+      "start": "clear",
+      "restart": "clear && echo Restarting"
+    },
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ]
   }
 }
