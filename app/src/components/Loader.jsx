@@ -1,9 +1,9 @@
 import { NewLoader, Animation } from "./LoaderStyles"
 import loader_logo from "../assets/loader.svg"
 
-function Loader() {
+function Loader(props) {
   return (
-    <NewLoader>
+    <NewLoader centered={props.centered}>
       <Animation src={loader_logo} alt="Loader" />
     </NewLoader>
   )
