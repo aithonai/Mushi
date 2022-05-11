@@ -1,7 +1,9 @@
-import '@testing-library/jest-dom'
-import { render, screen } from "@testing-library/react"
+import "jest-styled-components"
+import "@testing-library/jest-dom"
+import { render, screen, fireEvent } from "@testing-library/react"
 import Card from "../components/Card"
-import { Title, Thumbnail } from "../components/CardStyles"
+import { NewCard, Title, Thumbnail } from "../components/CardStyles"
+import { ModalContainer } from "../components/ModalStyles"
 import mushiLogo from "../assets/mushi_mini.png"
 
 const props = {
@@ -28,5 +30,25 @@ describe("Renders card information", () => {
 		const { container } = render(<Card {...props} />)
 		const cardImage = container.querySelector(`${Thumbnail} > img`)
 		expect(cardImage.src).toContain(props.image[0])
+	})
+})
+
+describe("Modal shows when click the Card", () => {
+	test("Modal display turns to flex", () => {
+		const { container } = render(<Card {...props} />)
+		const card = container.querySelector(NewCard)
+		const cardModal = container.querySelector(ModalContainer)
+
+		fireEvent.click(card)
+		expect(cardModal).toHaveStyleRule('display', 'flex')
+	})
+
+	test("Modal opacity turns to 1", () => {
+		const { container } = render(<Card {...props} />)
+		const card = container.querySelector(NewCard)
+		const cardModal = container.querySelector(ModalContainer)
+
+		fireEvent.click(card)
+		expect(cardModal).toHaveStyleRule('opacity', '1')
 	})
 })
