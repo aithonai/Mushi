@@ -1,9 +1,7 @@
 import "jest-styled-components"
 import "@testing-library/jest-dom"
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, fireEvent } from "@testing-library/react"
 import Modal from "../components/Modal"
-import { useModal } from "../hooks/useModal"
-import { NewCard, Title, Thumbnail } from "../components/CardStyles"
 import { ModalContainer, CloseButton } from "../components/ModalStyles"
 
 describe("Close modal properly", () => {

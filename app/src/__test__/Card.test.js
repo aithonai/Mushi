@@ -1,6 +1,6 @@
 import "jest-styled-components"
 import "@testing-library/jest-dom"
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, fireEvent } from "@testing-library/react"
 import Card from "../components/Card"
 import { NewCard, Title, Thumbnail } from "../components/CardStyles"
 import { ModalContainer } from "../components/ModalStyles"
