@@ -1,32 +1,20 @@
-import "./Nav.scss"
-import { UilPlus, UilApps } from '@iconscout/react-unicons'
-import logo from "../assets/mushi_mini.png"
-import { Link } from "react-router-dom"
+import { MyNav, Content, Home, Logo, Search, OptionLink } from "./NavStyles.jsx"
+import { UilPlus } from "@iconscout/react-unicons"
+import MushiLogo from "../assets/mushi_mini.png"
 
 function Nav() {
   return (
-    <div className="nav">
-      <div className="nav_container">
-        <div className="nav_brand">
-          <Link to="/" className="logo_container">
-            <img src={logo} alt="mushi logo" title="Go to Home"></img>
-          </Link>
-        </div>
-        <div className="nav_search">
-          <input type="text" name="search" id="search" placeholder="Buscar" />
-        </div>
-        <div className="nav_items">
-          <div className="nav_new">
-            <Link to="new">
-              <UilPlus />
-            </Link>  
-          </div>
-          <div className="nav_menu_mobile" id="menu_btn">
-            <UilApps />
-          </div>
-        </div>
-      </div>
-    </div>
+    <MyNav>
+      <Content>
+        <Home to="/">
+          <Logo src={MushiLogo} alt="mushi logo" title="Go to Home" />
+        </Home>
+        <Search type="text" placeholder="Buscar" />
+        <OptionLink to="new">
+          <UilPlus />
+        </OptionLink>
+      </Content>
+    </MyNav>
   )
 }
 
