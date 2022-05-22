@@ -1,4 +1,4 @@
-import "./Section.scss"
+import { MySection, Content, NoProductsMessage } from "./SectionStyles"
 import { useEffect, useState } from "react"
 import Card from "./Card"
 import Loader from "./Loader"
@@ -18,15 +18,15 @@ function Section(props) {
       { !renderCondition && <Loader centered /> }
       {
         renderCondition && products.length > 0
-        && <section className="section">
-            <section className="grid-container">
+        && <MySection>
+            <Content>
               {products.map(product => <Card key={product.id} {...product}/>)}
-            </section>
-          </section> 
+            </Content>
+          </MySection> 
       }
       {
         renderCondition && products.length < 1
-        && <p style={{textAlign: "center"}}>We have nothing to show <br /> ._.</p>
+        && <NoProductsMessage>We have nothing to show <br /> ._.</NoProductsMessage>
       }
     </>
   )
