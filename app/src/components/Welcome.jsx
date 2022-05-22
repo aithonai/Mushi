@@ -1,17 +1,13 @@
-import "./Welcome.scss"
-import logo from "../assets/mushi.svg"
+import MushiLogo from "../assets/mushi.svg"
+import { MyWelcome, LogoContainer, Logo } from "./WelcomeStyles"
 
 function Welcome() {
   return (
-    <div className="welcome">
-      <div className="welcome_container">
-        <div className="welcome_logo_container">
-          <div className="welcome_logo">
-            <img src={logo} alt="mushi logo"></img>
-          </div>
-        </div>
-      </div>
-    </div>
+    <MyWelcome>
+      <LogoContainer>
+        <Logo src={MushiLogo} alt="mushi logo" />
+      </LogoContainer>
+    </MyWelcome>
   )
 }
 
