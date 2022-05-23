@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import * as theme from "./Theme"
 
 export const ModalContainer = styled.section`
 	position: fixed;
@@ -20,16 +21,15 @@ export const ModalContainer = styled.section`
   )}
   transition: all 0.5s ease-in-out;
 `
-const contentMargin = '2rem'
+ 
 export const Content = styled.div`
-	min-width: calc(100% - ${contentMargin});
-	max-width: calc(100% - ${contentMargin});
-	max-height: calc(100% - ${contentMargin});
-	height: 100%;
-	margin: ${contentMargin};
-	color: black;
-	background-color: white;
+	margin: 2rem;
+	max-width: calc(100% - 2rem);
+	max-height: calc(100% - 2rem);
+	color: ${theme.color.black};
+	background-color: ${theme.color.white};
 	border-radius: 0.8rem;
+	overflow-y: auto;
 `
 
 export const Header = styled.header`
@@ -41,12 +41,15 @@ export const Header = styled.header`
 
 export const Title = styled.p`
 	all: unset;
-	font-size: 1.5rem;
 	color: #222;
-	font-weight: bold;
+	font-size: 1.5rem;
+	font-family: ${theme.font.primary};
+	font-weight: ${theme.font.weight.bold};
 `
 
 export const Body = styled.section`
+	max-width: 100%;
+	max-height: 100%;
 	padding: 1rem;
 	border-top: 1px solid #f2f2f2;
 `
