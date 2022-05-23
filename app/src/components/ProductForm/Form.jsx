@@ -3,7 +3,7 @@ import {
   TextArea, Controls, FormControls, PreviewCard 
 } from "./FormStyles"
 import { useState, useEffect, useRef  } from "react"
-import Card from "../Card"
+import Card from "../Card/Card"
 import MyButton from "../MyButton"
 
 function ProductForm() {

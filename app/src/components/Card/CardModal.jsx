@@ -3,7 +3,7 @@ import {
 	ProductContent, ImageContainer,
 	MultipleImageContainer, Image 
 } from "./CardModalStyles"
-import Modal from "./Modal"
+import Modal from "../Modal"
 
 function mapImages(images) {
 	return images.map(img => <Image src={img} key={img} alt={img} />)

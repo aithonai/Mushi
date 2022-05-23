@@ -1,6 +1,6 @@
 import { MySection, Content, NoProductsMessage } from "./SectionStyles"
 import { useEffect, useState } from "react"
-import Card from "./Card"
+import Card from "./Card/Card"
 import Loader from "./Loader"
 
 function Section(props) {

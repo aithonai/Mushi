@@ -1,5 +1,5 @@
 import { NewCard, Thumbnail, Information, Title, Description } from "./CardStyles"
-import { useModal } from "../hooks/useModal"
+import { useModal } from "../../hooks/useModal"
 import CardModal from "./CardModal"
 
 export default function Card(props) {
