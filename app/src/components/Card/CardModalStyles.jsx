@@ -8,11 +8,11 @@ export const ProductContent = styled.div`
 
 export const ImageContainer = styled.div`
 	display: grid;
-	grid-template-columns: 1fr;
-`
-
-export const MultipleImageContainer = styled(ImageContainer)`
-	grid-template-columns: 1fr 1fr
+	${props => (
+		props.imagesLength > 1
+		? 'grid-template-columns: 1fr 1fr;'
+		: 'grid-template-columns: 1fr;'
+	)}
 `
 
 export const Image = styled.img`
