@@ -4,7 +4,7 @@ import * as theme from "../Theme"
 export const NewCard = styled.div`
 	width: 100%;
   max-width: 28rem;
-  height: 6rem;
+  height: 7.5rem;
   border: 0px solid transparent;
   border-radius: 6px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
@@ -22,7 +22,7 @@ export const NewCard = styled.div`
 `
 
 export const Thumbnail = styled.div`
-	width: 30%;
+	width: 35%;
   background-color: ${theme.color.white};
 
   img {
