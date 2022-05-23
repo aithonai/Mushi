@@ -5,7 +5,7 @@ import Loader from "./Loader"
 
 function Section(props) {
   const [products, setProducts] = useState()
-  const renderCondition = products instanceof Array
+  const productsIsArray = products instanceof Array
 
   useEffect(() => {
     fetch(`/products`)
@@ -15,9 +15,9 @@ function Section(props) {
 
   return (
     <>
-      { !renderCondition && <Loader centered /> }
+      { !productsIsArray && <Loader centered /> }
       {
-        renderCondition && products.length > 0
+        productsIsArray && products.length > 0
         && <MySection>
             <Content>
               {products.map(product => <Card key={product.id} {...product}/>)}
@@ -25,7 +25,7 @@ function Section(props) {
           </MySection> 
       }
       {
-        renderCondition && products.length < 1
+        productsIsArray && products.length < 1
         && <NoProductsMessage>We have nothing to show <br /> ._.</NoProductsMessage>
       }
     </>
