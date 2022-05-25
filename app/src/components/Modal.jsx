@@ -32,7 +32,7 @@ export default function Modal (props) {
 		<ModalContainer isOpen={props.isOpen} onClick={props.closeModal}>
 			<Content onClick={handleModalClose}>
 				<Header>
-					{props.title && <Title>{props.title}</Title>}
+					{props.title && <Title title={props.title}>{props.title}</Title>}
 					<CloseButton onClick={props.closeModal}>
 						<UilMultiply />
 					</CloseButton>

@@ -50,7 +50,6 @@ export const Title = styled.p`
 export const Body = styled.section`
 	max-width: 100%;
 	max-height: 100%;
-	padding: 1rem;
 	border-top: 1px solid #f2f2f2;
 `
 
