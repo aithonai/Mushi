@@ -14,6 +14,7 @@ export const Form = styled.form`
   padding: 0 1rem;
   font-family: ${theme.font.primary};
   background-color: ${theme.color.white};
+  margin-top: ${theme.nav.height};
   border-right: 1px solid #f2f2f2;
   border-left: 1px solid #f2f2f2;
   padding-bottom: 1rem;
@@ -21,13 +22,13 @@ export const Form = styled.form`
 
   @media screen and (${theme.breakpoint.mobile.width}) {
     width: 100%;
+    margin-top: ${theme.nav.mobile.height};
     border: 0;
   }
 `
 
 export const Title = styled.header`
 	padding: 1rem 0;
-  width: 100%;
   font-family: ${theme.font.primary};
   font-size: ${theme.font.size.sectionTitle};
   font-weight: bold;
