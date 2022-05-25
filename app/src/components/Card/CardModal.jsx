@@ -1,5 +1,16 @@
-import styled from "styled-components"
-import { ProductContent, ImageContainer, Image } from "./CardModalStyles"
+import {
+  ProductContent,
+  ImageContainer,
+  Image,
+  CardSection,
+  SectionTitle,
+  Description,
+  Container,
+  Aside,
+  Info,
+  Title,
+  Content
+} from "./CardModalStyles"
 import Modal from "../Modal"
 
 function mapImages(images) {
@@ -12,18 +23,29 @@ function CardModal(props) {
 
   return (
     <Modal title={name} isOpen={props.isOpen} closeModal={props.closeModal}>
-      <ProductContent>
-        <ImageContainer imagesLength={image instanceof Array && image.length}>
-          {images}
-        </ImageContainer>
-        <Stock>{stock}</Stock>
-        <Info>{description}</Info>
-      </ProductContent>
+      <Container>
+        <Aside>
+          <Info>
+            <Title>Stock</Title>
+            {stock && <Content>{stock}</Content>}
+          </Info>
+          <Info>
+            <Title>Category</Title>
+            {props.category && <Content>{props.category}</Content>}
+          </Info>
+        </Aside>
+        <ProductContent>
+          <ImageContainer imagesLength={image instanceof Array && image.length}>
+            {images}
+          </ImageContainer>
+          <CardSection>
+            <SectionTitle>Description</SectionTitle>
+            <Description>{description}</Description>
+          </CardSection>
+        </ProductContent>
+      </Container>
     </Modal>
   )
 }
-
-const Stock = styled.span``
-const Info = styled.p``
 
 export default CardModal
