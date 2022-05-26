@@ -1,46 +1,35 @@
 import { useEffect } from "react"
-import { UilMultiply } from '@iconscout/react-unicons'
-import { 
-	ModalContainer, 
-	Content, 
-	Header, 
-	Body, 
-	Title,
-	CloseButton, 
-} from "./ModalStyles"
+import { ModalContainer, Body } from "./ModalStyles"
 
-export default function Modal (props) {
-	const handleModalClose = (e) => e.stopPropagation()
-	const preventPageScroll = () => {
-		props.isOpen 
-		? document.body.style.overflow = 'hidden'
-		: document.body.style.overflow = 'unset'
-	}
-	const closeOnEscapeKeyDown = (e) => {
-		if ((e.charCode || e.keyCode) === 27) props.closeModal() 
-	}
+export default function Modal(props) {
+  const closeModal = () => props.closeModal()
 
-	useEffect(preventPageScroll, [props.isOpen])
-	useEffect(() => {
-		document.body.addEventListener('keydown', closeOnEscapeKeyDown)
-		return function cleanup() {
-			document.body.removeEventListener('keydown', closeOnEscapeKeyDown)
-		}
-	})
+  const handleModalClose = e => {
+    const ModalContainerID = ModalContainer.styledComponentId
+    if (e.target.className.includes(ModalContainerID)) closeModal()
+  }
 
-	return (
-		<ModalContainer isOpen={props.isOpen} onClick={props.closeModal}>
-			<Content onClick={handleModalClose}>
-				<Header>
-					{props.title && <Title title={props.title}>{props.title}</Title>}
-					<CloseButton onClick={props.closeModal}>
-						<UilMultiply />
-					</CloseButton>
-				</Header>
-				<Body>
-					{props.children}
-				</Body>
-			</Content>
-		</ModalContainer>
-	)
+  const preventPageScroll = () => {
+    props.isOpen
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset")
+  }
+
+  const closeWithEscape = e => (e.charCode || e.keyCode) === 27 && closeModal()
+
+  useEffect(preventPageScroll, [props.isOpen])
+  useEffect(() => {
+    document.body.addEventListener("keydown", closeWithEscape)
+    document.body.addEventListener("click", handleModalClose)
+    return function cleanup() {
+      document.body.removeEventListener("keydown", closeWithEscape)
+      document.body.removeEventListener("click", handleModalClose)
+    }
+  })
+
+  return (
+    <ModalContainer isOpen={props.isOpen}>
+      <Body>{props.children}</Body>
+    </ModalContainer>
+  )
 }
