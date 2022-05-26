@@ -11,7 +11,8 @@ export const font = {
     sectionTitle: "1.6rem",
   },
   weight: {
-    bold: "600",
+    medium: 500,
+    bold: "700",
   },
 }
 
