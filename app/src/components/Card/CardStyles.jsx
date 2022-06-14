@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import * as theme from "../Theme"
 
-export const NewCard = styled.div`
+export const Container = styled.div`
 	width: 100%;
   max-width: 28rem;
   height: 7.5rem;
@@ -36,6 +36,7 @@ export const Thumbnail = styled.div`
 export const Information = styled.div`
 	width: 70%;
 	display: flex;
+  justify-content: space-between;
   flex-direction: column;
   padding: 0.4rem;
   max-width: calc(70% - 0.5rem*2);
@@ -54,10 +55,18 @@ export const Title = styled.span`
 `
 
 export const Description = styled.span`
-	max-width: 15rem;
+  display: block;
+  max-height: 4.4rem;
   font-size: 0.8rem;
   line-height: 1.1rem;
   font-weight: normal;
   color: gray;
   overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+export const Price = styled.span`
+  font-size: 0.9rem;
+  font-weight: ${theme.font.weight.medium};
+  color: #555;
 `
