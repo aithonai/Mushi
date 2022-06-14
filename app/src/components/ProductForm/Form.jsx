@@ -88,7 +88,7 @@ function ProductForm() {
             </JoinInputs>
 
             <label htmlFor="description">Description</label>
-            <TextArea required type="text" name="description" maxLength={255} />
+            <TextArea required type="text" name="description" />
 
             <JoinInputs>
               <div>
