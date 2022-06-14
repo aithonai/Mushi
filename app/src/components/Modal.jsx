@@ -1,35 +1,27 @@
 import { useEffect } from "react"
-import { ModalContainer, Body } from "./ModalStyles"
+import * as Modal from "./ModalStyles"
+import ReactPortal from "./Portal/Portal"
 
-export default function Modal(props) {
-  const closeModal = () => props.closeModal()
-
-  const handleModalClose = e => {
-    const ModalContainerID = ModalContainer.styledComponentId
-    if (e.target.className.includes(ModalContainerID)) closeModal()
-  }
-
-  const preventPageScroll = () => {
-    props.isOpen
+export default function ModalComponent(props) {
+  useEffect(() => {
+    props.active
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "unset")
-  }
 
-  const closeWithEscape = e => (e.charCode || e.keyCode) === 27 && closeModal()
-
-  useEffect(preventPageScroll, [props.isOpen])
-  useEffect(() => {
+    const closeWithEscape = e => e.key === "Escape" && props.close()
     document.body.addEventListener("keydown", closeWithEscape)
-    document.body.addEventListener("click", handleModalClose)
-    return function cleanup() {
+    return () => {
       document.body.removeEventListener("keydown", closeWithEscape)
-      document.body.removeEventListener("click", handleModalClose)
     }
-  })
+  }, [props])
 
   return (
-    <ModalContainer isOpen={props.isOpen}>
-      <Body>{props.children}</Body>
-    </ModalContainer>
+    <ReactPortal wrapperId="react-portal-wrapper">
+      <Modal.Modal active={props.active} onClick={props.close}>
+        <Modal.Container>
+          <Modal.Body>{props.children}</Modal.Body>
+        </Modal.Container>
+      </Modal.Modal>
+    </ReactPortal>
   )
 }
