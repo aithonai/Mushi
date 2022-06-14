@@ -1,5 +1,8 @@
 import {
   ProductContent,
+  Navigation,
+  CloseButton,
+  Header,
   ImageContainer,
   Image,
   CardSection,
@@ -8,10 +11,10 @@ import {
   Container,
   Aside,
   Info,
+  Informations,
   Title,
-  Content
+  Content,
 } from "./CardModalStyles"
-import Modal from "../Modal"
 
 function mapImages(images) {
   return images.map(img => <Image src={img} key={img} alt={img} />)
@@ -22,29 +25,37 @@ function CardModal(props) {
   const images = image instanceof Array && mapImages(image)
 
   return (
-    <Modal title={name} isOpen={props.isOpen} closeModal={props.closeModal}>
-      <Container>
-        <Aside>
+    <Container onClick={e => e.stopPropagation()}>
+      <Aside>
+        <Header>{name}</Header>
+        <Informations>
           <Info>
-            <Title>Stock</Title>
-            {stock && <Content>{stock}</Content>}
-          </Info>
-          <Info>
-            <Title>Category</Title>
             {props.category && <Content>{props.category}</Content>}
+            <Title>Category</Title>
           </Info>
-        </Aside>
-        <ProductContent>
-          <ImageContainer imagesLength={image instanceof Array && image.length}>
-            {images}
-          </ImageContainer>
-          <CardSection>
-            <SectionTitle>Description</SectionTitle>
-            <Description>{description}</Description>
-          </CardSection>
-        </ProductContent>
-      </Container>
-    </Modal>
+          <Info>
+            {stock && <Content>{stock}</Content>}
+            <Title>Stock</Title>
+          </Info>
+          <Info>
+            {props.price && <Content>{"$" + props.price}</Content>}
+            <Title>Price</Title>
+          </Info>
+        </Informations>
+      </Aside>
+      <ProductContent>
+        <Navigation>
+          <CloseButton onClick={props.close}></CloseButton>
+        </Navigation>
+        <ImageContainer imagesLength={image instanceof Array && image.length}>
+          {images}
+        </ImageContainer>
+        <CardSection>
+          <SectionTitle>Description</SectionTitle>
+          <Description>{description}</Description>
+        </CardSection>
+      </ProductContent>
+    </Container>
   )
 }
 
