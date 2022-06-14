@@ -1,5 +1,5 @@
 import { MyNav, Content, Home, Logo, Search, OptionLink } from "./NavStyles.jsx"
-import { UilPlus } from "@iconscout/react-unicons"
+import { UilCreateDashboard } from "@iconscout/react-unicons"
 import MushiLogo from "../assets/mushi_mini.png"
 
 function Nav() {
@@ -11,7 +11,7 @@ function Nav() {
         </Home>
         <Search type="text" placeholder="Buscar" />
         <OptionLink to="new">
-          <UilPlus />
+          <UilCreateDashboard />
         </OptionLink>
       </Content>
     </MyNav>
